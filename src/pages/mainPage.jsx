@@ -1,8 +1,11 @@
 import React from 'react'
+import DropDown from '../components/General/DropDown'
 
 const mainPage = () => {
   return (
-    <div>mainPage</div>
+    <div>
+       
+    </div>
   )
 }
 

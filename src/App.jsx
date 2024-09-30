@@ -5,15 +5,16 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import mainPage from "./pages/mainPage";
+import MainPage from "./pages/mainPage";
+import Mainlayout from "./layouts/MainLayout";
 
 function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<mainPage />} />
+        <Route path="/" element={<Mainlayout/>}>
+          <Route index element={<MainPage />} />
         </Route>
       </>
     )
