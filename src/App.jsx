@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import MainPage from "./pages/mainPage";
 import Mainlayout from "./layouts/MainLayout";
+import FindUs from "./pages/FindUs";
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
       <>
         <Route path="/" element={<Mainlayout/>}>
           <Route index element={<MainPage />} />
+          <Route path="/find-us" element={<FindUs />} />
         </Route>
       </>
     )

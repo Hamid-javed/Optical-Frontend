@@ -1,60 +1,84 @@
 import React, { useState } from "react";
-import { FaShoppingCart, FaUser } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 import { HiOutlineSearch } from "react-icons/hi";
-import { Link } from "react-router-dom";
-import { Dropdown } from "primereact/dropdown";
-import { IoIosArrowDown } from "react-icons/io";
-import DropDown from "../components/General/DropDown";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isMenu, setIsMenu] = useState(false);
-  const [scategorie, setcategorie] = useState("");
-  const options = [
-    { categorie: "Men"},
-    { categorie: "Women"},
-    { categorie: "Childern"},
-  ];
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("Categories");
 
-console.log(scategorie)
+  const categories = ["Men", "Women", "Children"];
+  const navigate = useNavigate();
+
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+    setIsDropdownOpen(false);
+  };
 
   return (
-    <nav className="bg-white shadow-md sticky">
+    <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:justify-around">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="text-2xl font-bold tracking-wide">
-              ClearVision
+              Clearvision.pk
             </Link>
           </div>
 
           {/* Navigation Links */}
           <div className="hidden md:flex space-x-8 ml-10">
-            {" "}
-            {/* Added `ml-10` for more space */}
             <Link
               to="/"
               className="text-sm font-medium text-gray-700 hover:text-gray-900"
             >
               Home
             </Link>
-            <div className="flex justify-center items-center cursor-pointer gap-1 text-sm font-medium text-gray-700 hover:text-gray-900">
-              {/* Categories
-              <IoIosArrowDown />
-              <DropDown/> */}
-              <div className="flex justify-content-center ">
-                <Dropdown
-                  value={scategorie}
-                  onChange={(e) => setcategorie(e.value)}
-                  options={options}
-                  optionLabel="categorie"
-                  placeholder="Categories"
-                  className="w-full bg-white md:w-14rem text-right"
-                />
-              </div>
+            
+            {/* Custom Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="text-sm font-medium text-gray-700 hover:text-gray-900 flex items-center"
+              >
+                {selectedCategory}{" "}
+                <svg
+                  className={`ml-2 h-4 w-4 transform ${
+                    isDropdownOpen ? "rotate-180" : "rotate-0"
+                  } transition-transform`}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              {isDropdownOpen && (
+                <div className="absolute z-10 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                  <ul>
+                    {categories.map((category, index) => (
+                      <li
+                        key={index}
+                        onClick={() => handleCategorySelect(category)}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                      >
+                        {category}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
+
             <Link
-              to="/"
+              to="/find-us"
               className="text-sm font-medium text-gray-700 hover:text-gray-900"
             >
               Find Us
@@ -78,7 +102,6 @@ console.log(scategorie)
           {/* Icons */}
           <div className="hidden md:flex items-center space-x-4">
             <FaShoppingCart className="h-5 w-5 cursor-pointer text-gray-700 hover:text-gray-900" />
-            {/* <FaUser className="h-5 w-5 cursor-pointer text-gray-700 hover:text-gray-900" /> */}
           </div>
 
           {/* Mobile Menu Button */}
@@ -86,7 +109,6 @@ console.log(scategorie)
             <button
               className="text-gray-700 hover:text-gray-900 focus:outline-none"
               onClick={() => setIsMenu((prev) => !prev)}
-              // Add logic for opening mobile menu if needed
             >
               <svg
                 className="h-6 w-6"
@@ -107,43 +129,45 @@ console.log(scategorie)
         </div>
       </div>
 
-      {/* Mobile Search and Links */}
-      {isMenu && (
-        <div className="md:hidden px-4 pt-4 pb-2">
-          <div className="space-y-2 flex flex-col justify-center items-center">
-            <Link
-              to="/"
-              className="block text-sm font-medium text-gray-700 hover:text-gray-900"
-            >
-              Home
-            </Link>
-            <Link
-              to="/"
-              className="block text-sm font-medium text-gray-700 hover:text-gray-900"
-            >
-              Men
-            </Link>
-            <Link
-              to="/"
-              className="block text-sm font-medium text-gray-700 hover:text-gray-900"
-            >
-              Women
-            </Link>
-            <Link
-              to="/"
-              className="block text-sm font-medium text-gray-700 hover:text-gray-900"
-            >
-              Child
-            </Link>
-            <Link
-              to="/"
-              className="block text-sm font-medium text-gray-700 hover:text-gray-900"
-            >
-              Find Us
-            </Link>
-          </div>
+      {/* Mobile Search and Links with Transition */}
+      <div
+        className={`${
+          isMenu ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+        } transition-all duration-500 ease-in-out overflow-hidden md:hidden px-4 pt-4 pb-2`}
+      >
+        <div className="space-y-2 flex flex-col justify-center items-center">
+          <Link
+            to="/"
+            className="block text-sm font-medium text-gray-700 hover:text-gray-900"
+          >
+            Home
+          </Link>
+          <Link
+            to="/"
+            className="block text-sm font-medium text-gray-700 hover:text-gray-900"
+          >
+            Men
+          </Link>
+          <Link
+            to="/"
+            className="block text-sm font-medium text-gray-700 hover:text-gray-900"
+          >
+            Women
+          </Link>
+          <Link
+            to="/"
+            className="block text-sm font-medium text-gray-700 hover:text-gray-900"
+          >
+            Children
+          </Link>
+          <Link
+            to="/find-us"
+            className="block text-sm font-medium text-gray-700 hover:text-gray-900"
+          >
+            Find Us
+          </Link>
         </div>
-      )}
+      </div>
     </nav>
   );
 };
