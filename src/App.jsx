@@ -8,6 +8,7 @@ import {
 import MainPage from "./pages/mainPage";
 import Mainlayout from "./layouts/MainLayout";
 import FindUs from "./pages/FindUs";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Mainlayout/>}>
           <Route index element={<MainPage />} />
           <Route path="/find-us" element={<FindUs />} />
+          <Route path="/product-details" element={<ProductDetails />} />
         </Route>
       </>
     )
@@ -24,7 +26,7 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </>
   )
 }

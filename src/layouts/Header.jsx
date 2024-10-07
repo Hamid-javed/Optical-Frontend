@@ -8,7 +8,7 @@ const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Categories");
 
-  const categories = ["Men", "Women", "Children"];
+  const categories = ["Men", "Women", "Children", "Sunglasses"];
   const navigate = useNavigate();
 
   const handleCategorySelect = (category) => {
@@ -23,7 +23,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="text-2xl font-bold tracking-wide">
-              Clearvision.pk
+              CLEARVISION.pk
             </Link>
           </div>
 
@@ -31,16 +31,22 @@ const Header = () => {
           <div className="hidden md:flex space-x-8 ml-10">
             <Link
               to="/"
-              className="text-sm font-medium text-gray-700 hover:text-gray-900"
+              className="text-base font-medium text-gray-700 hover:text-gray-900"
             >
               Home
             </Link>
+            {/* <Link
+              to="/"
+              className="text-base font-medium text-gray-700 hover:text-gray-900"
+            >
+              Featured
+            </Link> */}
             
             {/* Custom Dropdown */}
             <div className="relative">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="text-sm font-medium text-gray-700 hover:text-gray-900 flex items-center"
+                className="text-base font-medium text-gray-700 hover:text-gray-900 flex items-center"
               >
                 {selectedCategory}{" "}
                 <svg
@@ -67,7 +73,7 @@ const Header = () => {
                       <li
                         key={index}
                         onClick={() => handleCategorySelect(category)}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                        className="block px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100 cursor-pointer"
                       >
                         {category}
                       </li>
@@ -79,7 +85,7 @@ const Header = () => {
 
             <Link
               to="/find-us"
-              className="text-sm font-medium text-gray-700 hover:text-gray-900"
+              className="text-base font-medium text-gray-700 hover:text-gray-900"
             >
               Find Us
             </Link>
@@ -133,7 +139,7 @@ const Header = () => {
       <div
         className={`${
           isMenu ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-        } transition-all duration-500 ease-in-out overflow-hidden md:hidden px-4 pt-4 pb-2`}
+        } transition-all duration-500 ease-in-out overflow-hidden md:hidden px-4`}
       >
         <div className="space-y-2 flex flex-col justify-center items-center">
           <Link
@@ -159,6 +165,12 @@ const Header = () => {
             className="block text-sm font-medium text-gray-700 hover:text-gray-900"
           >
             Children
+          </Link>
+          <Link
+            to="/"
+            className="block text-sm font-medium text-gray-700 hover:text-gray-900"
+          >
+            Sunglasses
           </Link>
           <Link
             to="/find-us"

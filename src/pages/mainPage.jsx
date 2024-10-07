@@ -1,13 +1,22 @@
-import React from 'react'
-import ImageSlider from './ImageSlider'
-import ImageMove from './imageMove'
+import React from "react";
+import IntroPage from "./IntroPage";
+import Brands from "../components/Brands";
+import Featured from "./Featured";
+import Loader from "../components/General/Loader";
+
 const mainPage = () => {
   return (
     <div>
-       <ImageSlider/>
-       <ImageMove/>
+      <IntroPage/>
+      <Brands/>
+      <Featured category="Men"/>
+      <Featured category="Women"/>
+      <Featured category="Children"/>
+      <Featured category="Sunglasses"/>
+      {/* <ImageMove /> */}
+      {/* <ImageSlider /> */}
     </div>
-  )
-}
+  );
+};
 
-export default mainPage
+export default mainPage;

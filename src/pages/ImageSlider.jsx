@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { IoIosArrowForward } from "react-icons/io";
+
 
 export default function ImageSlider() {
   const images = [
@@ -46,28 +48,13 @@ export default function ImageSlider() {
           onClick={() => setCurrentIndex(index)}
           className={`w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
             currentIndex === index
-              ? 'bg-blue-500 shadow-lg scale-125'
+              ? 'bg-black shadow-lg scale-125'
               : 'bg-gray-300 hover:bg-gray-400'
           }`}
           aria-label={`Go to image ${index + 1}`}
         />
       ))}
     </div>
-      {/* <div className="flex justify-center mt-4">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`w-4 h-4 mx-2 rounded-full transition-all duration-300 ease-in-out 
-        ${
-          currentIndex === index
-            ? "bg-black transform scale-125 shadow-lg"
-            : "bg-gray-300 hover:bg-gray-400"
-        }`}
-            aria-label={`Slide ${index + 1}`}
-          />
-        ))}
-      </div> */}
     </div>
   );
 }
