@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import {
   Route,
   RouterProvider,
@@ -11,11 +11,10 @@ import FindUs from "./pages/FindUs";
 import ProductDetails from "./pages/ProductDetails";
 
 function App() {
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/" element={<Mainlayout/>}>
+        <Route path="/" element={<Mainlayout />}>
           <Route index element={<MainPage />} />
           <Route path="/find-us" element={<FindUs />} />
           <Route path="/product-details" element={<ProductDetails />} />
@@ -28,7 +27,7 @@ function App() {
     <>
       <RouterProvider router={router} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

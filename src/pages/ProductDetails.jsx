@@ -4,13 +4,15 @@ import { URLS } from "../data/URL";
 import Slider from "../components/Slider";
 import { FaStar } from "react-icons/fa";
 import Review from "../components/Review";
+import Loader from "../components/General/Loader";
+import SelectLense from "../components/SelectLense";
 
 const ProductDetails = () => {
   const [response, setResponse] = useState(null);
   const [selectedColor, setSelectedColor] = useState("");
-  let productId = "670126900cbe0f95f6b16f65";
+  const [colorError, setColorError] = useState(false); // To track if the user tried adding without selecting a color
 
-  console.log(selectedColor);
+  const productId = localStorage.getItem("productId");
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -20,7 +22,6 @@ const ProductDetails = () => {
       );
       if (status === 200) {
         setResponse(response);
-        console.log(response);
       } else {
         console.log(response);
       }
@@ -43,13 +44,27 @@ const ProductDetails = () => {
     return stars;
   };
 
+  const handleAddToCart = () => {
+    if (!selectedColor) {
+      setColorError(true); // Show error if no color is selected
+      return;
+    }
+    // Add to cart logic goes here
+    console.log(`Adding product with color: ${selectedColor} to cart`);
+  };
+
   // Ensure we don't render until response is fetched
-  if (!response) return <div>Loading...</div>;
+  if (!response)
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
 
   return (
     <div className="product-details container mx-auto px-12 py-8">
       {/* Product Images Slider */}
-      <div className="flex flex-col md:flex-row gap-10 justify-center items-center mb-8">
+      <div className="flex flex-col md:flex-row gap-10 justify-center mb-8">
         <Slider images={response.images} />
         {/* Product Details */}
         <div className="w-full flex flex-col items-center md:w-1/2">
@@ -79,7 +94,10 @@ const ProductDetails = () => {
               {response.colors.map((color, index) => (
                 <div
                   key={index}
-                  onClick={() => setSelectedColor(color)}
+                  onClick={() => {
+                    setSelectedColor(color);
+                    setColorError(false); // Reset error when a color is selected
+                  }}
                   className={`cursor-pointer px-2 py-1 border rounded ${
                     selectedColor === color
                       ? "bg-black text-white"
@@ -102,10 +120,25 @@ const ProductDetails = () => {
             </div>
           )}
 
+          {/* Show error if no color selected */}
+          {colorError && (
+            <p className="text-red-500 mb-4">Please select a color.</p>
+          )}
+
           {/* Size */}
           <div className="mb-4">
             <span className="font-semibold text-gray-700">Size:</span>{" "}
             {response.size}
+          </div>
+
+          <div className="">
+            <div className="flex justify-center mb-3 gap-2">
+              <p className="font-semibold">Select Lense: </p>
+              <p className="text-red-500">Free*</p>
+            </div>
+            <div className="">
+              <SelectLense />
+            </div>
           </div>
 
           {/* Price and Stock */}
@@ -113,7 +146,12 @@ const ProductDetails = () => {
             <span className="text-2xl font-semibold text-green-600">
               Rs: {response.price.toFixed(2)}
             </span>
-            <button className="bg-black w-48 text-white  font-bold py-2 px-4 rounded transition duration-200 ease-in-out transform active:scale-95 group">
+            <button
+              onClick={handleAddToCart}
+              className={
+                "w-48 py-2 px-4 rounded font-bold transition duration-200 ease-in-out transform active:scale-95 bg-black text-white"
+              }
+            >
               Add to Cart
             </button>
           </div>

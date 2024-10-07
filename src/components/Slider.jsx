@@ -40,8 +40,14 @@ const Slider = ({ images = [] }) => {
       </div>
 
       {/* Prev & Next Buttons */}
-      <IoIosArrowBack onClick={prevSlide} className="absolute left-0 top-1/2 transform -translate-y-1/2 text-black text-4xl cursor-pointer" />
-      <IoIosArrowForward onClick={nextSlide} className="absolute right-0 top-1/2 transform -translate-y-1/2 text-black text-4xl cursor-pointer" />
+      <IoIosArrowBack
+        onClick={prevSlide}
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 text-black text-4xl cursor-pointer"
+      />
+      <IoIosArrowForward
+        onClick={nextSlide}
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 text-black text-4xl cursor-pointer"
+      />
 
       {/* Dots (Indicators) */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">

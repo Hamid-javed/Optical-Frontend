@@ -1,7 +1,10 @@
-import React from 'react';
+import React from "react";
 import { FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+
   // Function to render stars based on rating
   const renderStars = (rating) => {
     const totalStars = 5;
@@ -9,14 +12,23 @@ const ProductCard = ({ product }) => {
 
     for (let i = 0; i < totalStars; i++) {
       stars.push(
-        <FaStar className={i< rating ? "text-yellow-400" : "text-gray-600"}/>
+        <FaStar className={i < rating ? "text-yellow-400" : "text-gray-600"} />
       );
     }
     return stars;
   };
 
+  const handleClick = () => {
+    // Set the productId to localStorage only when clicking
+    localStorage.setItem("productId", product._id);
+    navigate("/product-details");
+  };
+
   return (
-    <div className="bg-white overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+    <div
+      onClick={handleClick}
+      className="bg-white overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+    >
       {/* Product Image */}
       <img
         src={product.images[0]}
@@ -25,7 +37,9 @@ const ProductCard = ({ product }) => {
       />
       {/* Product Details */}
       <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-800 w-[10rem]">{product.name}</h3>
+        <h3 className="text-lg font-semibold text-gray-800 w-[10rem]">
+          {product.name}
+        </h3>
         <div className="flex items-center mt-2">
           {/* Rating */}
           <div className="flex space-x-1">{renderStars(product.rating)}</div>
@@ -40,4 +54,3 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
-
