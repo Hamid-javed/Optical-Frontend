@@ -22,7 +22,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:justify-around">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link to="/" className="text-2xl font-bold tracking-wide">
+            <Link to="/" className="md:text-2xl font-bold tracking-wide">
               CLEARVISION.pk
             </Link>
           </div>
@@ -41,7 +41,7 @@ const Header = () => {
             >
               Featured
             </Link> */}
-            
+
             {/* Custom Dropdown */}
             <div className="relative">
               <button
@@ -138,7 +138,7 @@ const Header = () => {
       {/* Mobile Search and Links with Transition */}
       <div
         className={`${
-          isMenu ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+          isMenu ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         } transition-all duration-500 ease-in-out overflow-hidden md:hidden px-4`}
       >
         <div className="space-y-2 flex flex-col justify-center items-center">

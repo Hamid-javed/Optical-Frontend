@@ -20,7 +20,7 @@ const Slider = ({ images = [] }) => {
   }
 
   return (
-    <div className="relative md:w-[50%] w-full h-80 overflow-hidden">
+    <div className="relative md:w-[50%] w-full h-80 overflow-hidden mt-4">
       {/* Images */}
       <div
         className="flex transition-transform ease-in-out duration-500"
