@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+const BASE_URL = import.meta.env.VITE_LOCAL_URL;
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, card, setRemoveWish }) => {
   const navigate = useNavigate();
+  // const [response, setResponse] = useState("");
 
   // Function to render stars based on rating
   const renderStars = (rating) => {
@@ -22,6 +25,19 @@ const ProductCard = ({ product }) => {
     // Set the productId to localStorage only when clicking
     localStorage.setItem("productId", product._id);
     navigate("/product-details");
+  };
+
+  const handleRemove = async (event) => {
+    event.stopPropagation();
+    console.log(product._id);
+    const { data, status } = await axios.delete(
+      `${BASE_URL}products/wishlist/${product._id}`,
+      {
+        withCredentials: true,
+      }
+    );
+    setRemoveWish((prev) => !prev);
+    console.log(data.message);
   };
 
   return (
@@ -47,7 +63,19 @@ const ProductCard = ({ product }) => {
             ({product.reviewCount} reviews)
           </span>
         </div>
-        <p className="mt-3 text-lg font-bold text-black">Rs:{product.price}</p>
+        <div className="flex justify-between items-center mt-3">
+          <p className=" text-lg font-bold text-black">Rs:{product.price}</p>
+          {card === "wishlist" ? (
+            <button
+              onClick={handleRemove}
+              className="bg-black py-1 px-3 text-white relative z-10"
+            >
+              Remove
+            </button>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </div>
   );

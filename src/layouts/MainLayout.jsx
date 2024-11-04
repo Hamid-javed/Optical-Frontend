@@ -4,14 +4,13 @@ import Footer from "./Footer";
 import Header from "./Header";
 
 const mainlayout = () => {
-    return (
-        <>
-            <Header />
-            <Outlet />
-            {/* <Footer /> */}
-        </>
-    );
+  return (
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
+  );
 };
 
-
-export default mainlayout
+export default mainlayout;

@@ -48,14 +48,19 @@ const IntroPage = () => {
   ];
 
   return (
-    <div className="w-full px-6 md:px-12 my-14 gap-4 flex flex-col md:flex-row justify-between items-center">
+    <div
+      id="mainpage"
+      className="w-full px-6 md:px-12 my-14 gap-4 flex flex-col md:flex-row justify-between items-center"
+    >
       {/* Text Section */}
       <div className="flex flex-col gap-6 md:gap-8 max-w-lg">
         <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight">
           Find Glasses That <br /> Matches Your Style
         </h1>
         <p className="text-gray-600 text-sm md:text-base leading-relaxed">
-        Explore our extensive collection of meticulously crafted eyewear, designed to enhance your individuality and complement your unique sense of style.
+          Explore our extensive collection of meticulously crafted eyewear,
+          designed to enhance your individuality and complement your unique
+          sense of style.
         </p>
         <button
           className="px-4 py-2 mt-4 w-32 text-white bg-black rounded-lg shadow-md transition-all transform hover:scale-105 active:bg-white active:text-black"

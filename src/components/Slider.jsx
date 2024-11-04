@@ -26,7 +26,7 @@ const Slider = ({ images = [] }) => {
         className="flex transition-transform ease-in-out duration-500"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
-        {images.map((image, index) => (
+        {images?.map((image, index) => (
           <div
             key={index}
             className="w-full h-80 flex-shrink-0"

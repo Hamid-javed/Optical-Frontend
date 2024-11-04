@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-// import Toast from "../components/General/Toast";
+import React, { useEffect, useState } from "react";
+import Loader from "../components/General/Loader";
 
 const FindUs = () => {
   const [result, setResult] = React.useState("");
   const [severity, setSeverity] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -42,7 +43,7 @@ const FindUs = () => {
           <div>
             <h2 className="text-2xl font-bold mb-4">Need A Direct Line?</h2>
             <p className="text-gray-600 mb-4">
-            Opposite Sadiq Bazar, Rahim Yar Khan, Punjab 64200, Pakistan
+              Opposite Sadiq Bazar, Rahim Yar Khan, Punjab 64200, Pakistan
             </p>
             <div className="flex items-center mb-2">
               <span role="img" aria-label="phone" className="mr-2">
@@ -80,23 +81,23 @@ const FindUs = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <input
                 type="text"
-                name="name" // Added name attribute
+                name="name"
                 placeholder="Name*"
-                className="border p-2 rounded-md w-full"
+                className="border p-2 rounded-md w-full bg-white"
                 required
               />
               <input
                 type="email"
-                name="email" // Added name attribute
+                name="email"
                 placeholder="Email*"
-                className="border p-2 rounded-md w-full"
+                className="border p-2 rounded-md w-full bg-white"
                 required
               />
             </div>
             <textarea
-              name="comment" // Added name attribute
+              name="comment"
               placeholder="Comment"
-              className="border p-2 rounded-md w-full mb-4"
+              className="border p-2 rounded-md w-full mb-4 bg-white"
               rows="4"
               required
             ></textarea>

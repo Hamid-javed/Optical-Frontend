@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaHeart } from "react-icons/fa";
 import { HiOutlineSearch } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -107,6 +107,10 @@ const Header = () => {
 
           {/* Icons */}
           <div className="hidden md:flex items-center space-x-4">
+            <FaHeart
+              onClick={() => navigate("/wishlist")}
+              className="h-5 w-5 cursor-pointer text-gray-700 hover:text-gray-900"
+            />
             <FaShoppingCart className="h-5 w-5 cursor-pointer text-gray-700 hover:text-gray-900" />
           </div>
 

@@ -2,8 +2,9 @@ import React from "react";
 import IntroPage from "./IntroPage";
 import Brands from "../components/Brands";
 import Featured from "./Featured";
+import Loader from "../components/General/Loader";
 
-const mainPage = () => {
+const MainPage = () => {
   return (
     <div>
       <IntroPage />
@@ -16,4 +17,4 @@ const mainPage = () => {
   );
 };
 
-export default mainPage;
+export default MainPage;

@@ -6,7 +6,7 @@ const Review = ({ reviews }) => {
       <h2 className="text-2xl font-semibold text-center mb-4">
         Customer Reviews
       </h2>
-      {reviews.map((review) => (
+      {reviews?.map((review) => (
         <div
           className="border border-gray-300 rounded-md shadow-lg p-4 mb-4 bg-gray-50 "
           key={review._id}
@@ -31,4 +31,4 @@ const Review = ({ reviews }) => {
 
 export default Review;
 
-Review.jsx
+Review.jsx;

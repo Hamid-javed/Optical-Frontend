@@ -67,7 +67,7 @@ const SelectEyelense = ({
             <div className="flex flex-col items-center">
               <label className="text-gray-500">SPH</label>
               <select
-                className="w-24 p-2 border border-gray-300 rounded-md"
+                className="w-24 p-2 border border-gray-300 rounded-md bg-white"
                 value={rightSPH}
                 onChange={(e) => setRightSPH(e.target.value)}
               >
@@ -81,7 +81,7 @@ const SelectEyelense = ({
             <div className="flex flex-col items-center">
               <label className="text-gray-500">CYL</label>
               <select
-                className="w-24 p-2 border border-gray-300 rounded-md"
+                className="w-24 p-2 border border-gray-300 rounded-md bg-white"
                 value={rightCYL}
                 onChange={(e) => setRightCYL(e.target.value)}
               >
@@ -95,7 +95,7 @@ const SelectEyelense = ({
             <div className="flex flex-col items-center">
               <label className="text-gray-500">AXIS</label>
               <select
-                className="w-24 p-2 border border-gray-300 rounded-md"
+                className="w-24 p-2 border border-gray-300 rounded-md bg-white"
                 value={rightAxis}
                 onChange={(e) => setRightAxis(e.target.value)}
               >
@@ -114,7 +114,7 @@ const SelectEyelense = ({
             <div className="flex flex-col items-center">
               <label className="text-gray-500">SPH</label>
               <select
-                className="w-24 p-2 border border-gray-300 rounded-md"
+                className="w-24 p-2 border border-gray-300 rounded-md bg-white"
                 value={leftSPH}
                 onChange={(e) => setLeftSPH(e.target.value)}
               >
@@ -128,7 +128,7 @@ const SelectEyelense = ({
             <div className="flex flex-col items-center">
               <label className="text-gray-500">CYL</label>
               <select
-                className="w-24 p-2 border border-gray-300 rounded-md"
+                className="w-24 p-2 border border-gray-300 rounded-md bg-white"
                 value={leftCYL}
                 onChange={(e) => setLeftCYL(e.target.value)}
               >
@@ -142,7 +142,7 @@ const SelectEyelense = ({
             <div className="flex flex-col items-center">
               <label className="text-gray-500">AXIS</label>
               <select
-                className="w-24 p-2 border border-gray-300 rounded-md"
+                className="w-24 p-2 border border-gray-300 rounded-md bg-white"
                 value={leftAxis}
                 onChange={(e) => setLeftAxis(e.target.value)}
               >
