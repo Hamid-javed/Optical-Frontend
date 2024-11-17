@@ -1,58 +1,45 @@
 import React, { useState } from "react";
 import { FaShoppingCart, FaHeart } from "react-icons/fa";
-import { HiOutlineSearch } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
+import SearchBar from "../pages/SearchBar";
 
 const Header = () => {
   const [isMenu, setIsMenu] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("Categories");
 
-  const categories = ["Men", "Women", "Children", "Sunglasses"];
   const navigate = useNavigate();
-
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
-    setIsDropdownOpen(false);
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.scrollTo(0, 0);
   };
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-white shadow-md sticky top-0 z-40">
       <div className="px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:justify-around">
+        <div className="flex items-center justify-between md:justify-around h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link to="/" className="md:text-2xl font-bold tracking-wide">
+            <Link
+              to="/"
+              onClick={() => handleNavigation("/")}
+              className="text-lg md:text-2xl font-bold tracking-wide"
+            >
               CLEARVISION.pk
             </Link>
           </div>
 
-          {/* Navigation Links */}
-          <div className="hidden md:flex space-x-8 ml-10">
+          {/* Desktop Navigation Links */}
+          <div className="hidden md:flex items-center space-x-8 ml-8">
             <Link
-              to="/"
+              onClick={() => handleNavigation("/")}
               className="text-base font-medium text-gray-700 hover:text-gray-900"
             >
               Home
             </Link>
-            {/* <Link
-              to="/"
-              className="text-base font-medium text-gray-700 hover:text-gray-900"
-            >
-              Featured
-            </Link> */}
-
-            {/* Custom Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="text-base font-medium text-gray-700 hover:text-gray-900 flex items-center"
-              >
-                {selectedCategory}{" "}
+            <div className="relative dropdown dropdown-hover">
+              <button className="flex items-center bg-white font-semibold">
+                Categories
                 <svg
-                  className={`ml-2 h-4 w-4 transform ${
-                    isDropdownOpen ? "rotate-180" : "rotate-0"
-                  } transition-transform`}
+                  className="ml-2 h-4 w-4"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -66,25 +53,27 @@ const Header = () => {
                   />
                 </svg>
               </button>
-              {isDropdownOpen && (
-                <div className="absolute z-10 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                  <ul>
-                    {categories.map((category, index) => (
-                      <li
-                        key={index}
-                        onClick={() => handleCategorySelect(category)}
-                        className="block px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100 cursor-pointer"
-                      >
-                        {category}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu z-[1] w-28 p-2 bg-white shadow-2xl cursor-default"
+              >
+                <Link to="/category/Men" className="my-1 font-medium">
+                  Men
+                </Link>
+                <Link to="/category/Women" className="my-1 font-medium">
+                  Women
+                </Link>
+                <Link to="/category/Children" className="my-1 font-medium">
+                  Children
+                </Link>
+                <Link to="/category/Sunglasses" className="my-1 font-medium">
+                  Sunglasses
+                </Link>
+              </ul>
             </div>
-
             <Link
               to="/find-us"
+              onClick={() => handleNavigation("/find-us")}
               className="text-base font-medium text-gray-700 hover:text-gray-900"
             >
               Find Us
@@ -92,17 +81,8 @@ const Header = () => {
           </div>
 
           {/* Search Bar */}
-          <div className="flex flex-1 mx-6 max-w-[460px]">
-            <div className="relative w-full">
-              <input
-                type="text"
-                placeholder="Search for products..."
-                className="w-full bg-gray-100 text-sm border border-gray-300 rounded-full py-2 pl-10 pr-4 focus:outline-none focus:border-gray-500"
-              />
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <HiOutlineSearch className="h-5 w-5 text-gray-400" />
-              </div>
-            </div>
+          <div className="flex flex-1 justify-center mx-4">
+            <SearchBar />
           </div>
 
           {/* Icons */}
@@ -139,7 +119,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Search and Links with Transition */}
+      {/* Mobile Navigation Menu */}
       <div
         className={`${
           isMenu ? "max-h-screen opacity-100" : "max-h-0 opacity-0"

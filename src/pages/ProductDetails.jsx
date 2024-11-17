@@ -13,6 +13,8 @@ import SelectEyelense from "../components/SelectEyelense";
 const BASE_URL = import.meta.env.VITE_LOCAL_URL;
 import { Bounce, Flip, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AddReview from "../components/AddReview";
+import { useLocation } from "react-router-dom";
 
 const ProductDetails = () => {
   const [response, setResponse] = useState(null);
@@ -30,7 +32,10 @@ const ProductDetails = () => {
   const [leftSPH, setLeftSPH] = useState("0");
   const [leftCYL, setLeftCYL] = useState("0");
   const [leftAxis, setLeftAxis] = useState("0");
+  const [getReview, setGetReview] = useState(false);
   const productId = localStorage.getItem("productId");
+
+  const location = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -51,7 +56,7 @@ const ProductDetails = () => {
       }
     };
     fetchProductDetails();
-  }, [productId]);
+  }, [productId, getReview, location]);
 
   const handleAddToWishlist = async () => {
     try {
@@ -300,7 +305,7 @@ const ProductDetails = () => {
                 <button
                   onClick={handleAddToCart}
                   className={
-                    " py-2 px-4 rounded font-bold transition duration-200 ease-in-out transform active:scale-95 bg-black text-white"
+                    " py-2 px-4 transition duration-200 ease-in-out transform active:scale-95 bg-black text-white"
                   }
                 >
                   Add to Cart
@@ -308,7 +313,7 @@ const ProductDetails = () => {
                 <button
                   onClick={handleAddToWishlist}
                   className={
-                    "py-2 px-4 rounded font-bold transition duration-200 ease-in-out transform active:scale-95 bg-black text-white"
+                    "py-2 px-4 transition duration-200 ease-in-out transform active:scale-95 bg-black text-white"
                   }
                 >
                   Add to Wishlist
@@ -318,7 +323,7 @@ const ProductDetails = () => {
           </div>
         </div>
 
-        {/* Reviews */}
+        <AddReview setGetReview={setGetReview} />
         <Review reviews={response?.reviews} />
       </div>
     </>

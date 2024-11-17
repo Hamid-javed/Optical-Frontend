@@ -1,4 +1,5 @@
 import React from "react";
+import { FaStar } from "react-icons/fa";
 
 const Review = ({ reviews }) => {
   return (
@@ -17,10 +18,12 @@ const Review = ({ reviews }) => {
               {new Date(review.date).toLocaleDateString()}
             </span>
           </div>
-          <div className="mb-2">
-            <span className="text-yellow-500">
-              {"⭐".repeat(review.rating)}
-            </span>
+          <div className="mb-2 flex">
+            {/* <span className="text-yellow-500"> */}
+            {Array.from({ length: review.rating }, (_, index) => (
+              <FaStar key={index} className="text-2xl text-yellow-500" />
+            ))}
+            {/* </span> */}
           </div>
           <p className="italic mb-2">{review.review}</p>
         </div>

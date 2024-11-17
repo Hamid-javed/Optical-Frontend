@@ -2,7 +2,7 @@ import React from "react";
 import IntroPage from "./IntroPage";
 import Brands from "../components/Brands";
 import Featured from "./Featured";
-import Loader from "../components/General/Loader";
+import SearchBar from "./SearchBar";
 
 const MainPage = () => {
   return (
@@ -13,6 +13,7 @@ const MainPage = () => {
       <Featured category="Women" />
       <Featured category="Children" />
       <Featured category="Sunglasses" />
+      <SearchBar />
     </div>
   );
 };

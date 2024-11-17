@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -6,9 +6,7 @@ const BASE_URL = import.meta.env.VITE_LOCAL_URL;
 
 const ProductCard = ({ product, card, setRemoveWish }) => {
   const navigate = useNavigate();
-  // const [response, setResponse] = useState("");
 
-  // Function to render stars based on rating
   const renderStars = (rating) => {
     const totalStars = 5;
     const stars = [];
@@ -22,9 +20,8 @@ const ProductCard = ({ product, card, setRemoveWish }) => {
   };
 
   const handleClick = () => {
-    // Set the productId to localStorage only when clicking
     localStorage.setItem("productId", product._id);
-    navigate("/product-details");
+    navigate(`/product-details/${product._id}`);
   };
 
   const handleRemove = async (event) => {
@@ -37,7 +34,6 @@ const ProductCard = ({ product, card, setRemoveWish }) => {
       }
     );
     setRemoveWish((prev) => !prev);
-    console.log(data.message);
   };
 
   return (

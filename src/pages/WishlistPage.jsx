@@ -8,6 +8,7 @@ const WishlistPage = () => {
 
   const [response, setResponse] = useState("");
   useEffect(() => {
+    window.scroll(0, 0);
     const fetchData = async () => {
       const { data, status } = await axios.get(`${BASE_URL}products/wishlist`, {
         withCredentials: true,
